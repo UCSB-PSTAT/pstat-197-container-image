@@ -37,7 +37,7 @@ pipeline {
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME which rstudio'
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -q -e "getRversion() >= \\"4.1.3\\"" | tee /dev/stderr | grep -q "TRUE"'
                             sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME python -c "import numpy; import pandas; import torch; import keras; import tensorflow"'
-                            sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -e "library(\"tensorflow");library(\"tidyverse\");library(\"tidymodels\");library(\"keras\")"'
+                            sh 'podman run -it --rm --pull=never localhost/$IMAGE_NAME R -e "library(\"tensorflow");library(\"tidyverse\");library(\"tidymodels\");library(\"keras\");libarary (\"ggplot2\");library(\"janitor\")"'
                             sh 'podman run -d --name=$IMAGE_NAME --rm --pull=never -p 8888:8888 localhost/$IMAGE_NAME start-notebook.sh --NotebookApp.token="jenkinstest"'
                             sh 'sleep 10 && curl -v http://localhost:8888/rstudio?token=jenkinstest 2>&1 | grep -P "HTTP\\S+\\s[1-3][0-9][0-9]\\s+[\\w\\s]+\\s*$"'
                             sh 'curl -v http://localhost:8888/lab?token=jenkinstest 2>&1 | grep -P "HTTP\\S+\\s200\\s+[\\w\\s]+\\s*$"'
