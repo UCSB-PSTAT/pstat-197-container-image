@@ -16,6 +16,9 @@ RUN pip install keras \
 
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 
+# Disable downloads from JupyterHub. 
+RUN jupyter labextension disable @jupyterlab/docmanager-extension:download ; \
+    jupyter labextension disable @jupyterlab/filebrowser-extension:download
 
 USER $NB_USER
 
