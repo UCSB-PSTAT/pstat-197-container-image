@@ -5,7 +5,7 @@ LABEL maintainer="LSIT Systems <lsitops@ucsb.edu>"
 USER root
 
 # R Package Installs
-RUN R -e "install.packages(c('keras', 'tensorflow', 'tidymodels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c('janitor', 'keras', 'tensorflow', 'tidymodels'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 # Python Installs
 
